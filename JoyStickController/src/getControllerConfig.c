@@ -37,6 +37,6 @@ void getConfig()
 
 		printf("%d tackball(s) are availables\r\n", SDL_JoystickNumBalls(js)); //get nbr of available tackballs
 
-		SDL_JoystickClose(js);
+
 	}
 }
