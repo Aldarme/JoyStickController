@@ -8,8 +8,18 @@ Use an XBOX controller to control my quadricopter.
 
 GETTING STARTED
 
-This project is developping in C, with the SDL.
-You just need to use "make" command, to build the project.
+This project is developped in C, with the SDL.
+
+The Project is develop under ECLIPSE
+You will need the following configuration to used SDL2
+
+	Configure Eclipse to use SDL2
+
+    Right click your Project under “Package Explorer” and select Properties.
+    Select (C/C++ General > Paths and Symbols > Libraries)
+    Click “Add” and add “SDL2″ and click "OK"
+    Click “Add” and add “SDL2main” and click "OK" (optional)
+
 
 AUTHOR
 
