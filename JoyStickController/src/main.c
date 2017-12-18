@@ -8,41 +8,35 @@
 #include "../headers/Define.h"
 int i =0;
 
-SDL_Event myEvent;
+
 
 int main(void)
 {
-
-	/*
-	 * Init joyStick
-	 */
-	if(SDL_Init(SDL_INIT_JOYSTICK) < 0)
-	{
-		return EXIT_FAILURE;
-	}
-
-	//allow to activate joystick event
-	SDL_JoystickEventState(SDL_ENABLE);
+	//Init SDL to use joystick
+	sdlInit();
 
 	//get configuration information about the used controller
 	getConfig();
 
-
-
-
-	while(SDL_WaitEvent(&myEvent))
+	if(serialOpen() ==  EXIT_SUCCESS)
 	{
-		switch(myEvent.type)
-		{
-			case SDL_JOYAXISMOTION:
-				if(myEvent.jaxis.axis == 0)
-				{
-					printf(" %d axe value \r\n", myEvent.jaxis.axis, myEvent.jaxis.value);
-				}
-
-				break;
-		}
+		printf("Serial Com Port : OPEN\r\n");
+	}
+	else{
+		printf("Serial Com Port : fail to open\r\n");
+		return EXIT_FAILURE;
 	}
 
+	if(serialConf() == EXIT_SUCCESS)
+	{
+		printf("Serial Com Port Config: OK\r\n");
+	}
+	else{
+		printf("Serial Com Port Config: fail to config\r\n");
+		return EXIT_FAILURE;
+	}
+
+	//get event from controler
+	getEVENT();
 
 }
