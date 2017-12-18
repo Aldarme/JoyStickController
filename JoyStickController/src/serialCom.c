@@ -20,7 +20,7 @@ int serialOpen()
 	if ( (fd=open("/dev/ttyUSB0",O_RDWR)) == -1 )
 	{
 		perror("open");
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
 }
