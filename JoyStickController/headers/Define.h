@@ -12,6 +12,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <fcntl.h>  /* File Control Definitions          */
+#include <termios.h>/* POSIX Terminal Control Definitions*/
+#include <unistd.h> /* UNIX Standard Definitions         */
+#include <errno.h>  /* ERROR Number Definitions          */
+#include <time.h>
+
 /*********SDL******************/
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_assert.h>

@@ -17,12 +17,17 @@ struct termios	serialPortSettings;
 int serialOpen()
 {
 	/* Ouverture de la liaison serie */
-	if ( (fd=open("/dev/ttyUSB0",O_RDWR)) == -1 )
+	if ( (fd=open("/dev/ttyUSB0",O_RDWR)) < 0 )
 	{
 		perror("open");
 		return EXIT_FAILURE;
 	}
+
+
+
 	return EXIT_SUCCESS;
+
+
 }
 
 /*
@@ -33,8 +38,8 @@ int serialConf(void)
 	/* Lecture des parametres courants */
 	tcgetattr(fd,&serialPortSettings);
 
-	cfsetispeed(&serialPortSettings, B9600); //def baudRate for read function
-	cfsetospeed(&serialPortSettings, B9600); //def baudRate for write function
+	cfsetispeed(&serialPortSettings, B115200); //def baudRate for read function
+	cfsetospeed(&serialPortSettings, B115200); //def baudRate for write function
 
 	serialPortSettings.c_cflag &= ~PARENB;	//no parity bit
 
@@ -75,7 +80,7 @@ int serialWriteInt(int pData)
  */
 int serialWriteChar(char pData[])
 {
-	int dataSize = (int)pData / (int)pData[0];
+	int dataSize = sizeof(pData) / sizeof(pData[0]);
 	int  bytes_written  =  0 ;
 
 	bytes_written = write(fd,pData,dataSize);

@@ -71,11 +71,24 @@ void getEVENT()
 		{
 			case SDL_JOYAXISMOTION:
 
-				if(myEvent.jaxis.axis == 1)
+				if(myEvent.jaxis.axis == 1
+						&& (myEvent.jaxis.value < -10000 || myEvent.jaxis.value > 10000 ))
 				{
-					char StringToSend[14] = "1";
+					char StringToSend[16] = "1";
 
-					int jAxisValue = myEvent.jaxis.value;
+					strcat(StringToSend, "=");
+
+					int pval=0;
+					if(myEvent.jaxis.value < 0)
+					{
+						pval = myEvent.jaxis.value *(-1);
+					}
+					else
+					{
+						pval = myEvent.jaxis.value*(-1);
+					}
+
+					int jAxisValue = pval-1;
 					char jaxisValString[12]; //use 12 bit for a 32bits int
 					sprintf(jaxisValString, "%d", jAxisValue);
 
@@ -84,14 +97,30 @@ void getEVENT()
 					strcat(StringToSend, "\n");
 
 					serialWriteChar(StringToSend);
-					//printf(" %d axe value: %d \r\n", myEvent.jaxis.axis, myEvent.jaxis.value);
+					printf(StringToSend);
+
 				}
 
-				if(myEvent.jaxis.axis == 3)
+				if(myEvent.jaxis.axis == 3
+						&& (myEvent.jaxis.value < -10000 || myEvent.jaxis.value > 10000 )
+						&& (myEvent.jaxis.value != 32768))
 				{
 					char StringToSend[14] = "3";
 
-					int jAxisValue = myEvent.jaxis.value;
+					strcat(StringToSend, "=");
+
+					int pval=0;
+					if(myEvent.jaxis.value < 0)
+					{
+						pval = myEvent.jaxis.value *(-1);
+					}
+					else
+					{
+						pval = myEvent.jaxis.value*(-1);
+					}
+
+					int jAxisValue = pval;
+
 					char jaxisValString[12]; //use 12 bit for a 32bits int
 					sprintf(jaxisValString, "%d", jAxisValue);
 
@@ -100,14 +129,30 @@ void getEVENT()
 					strcat(StringToSend, "\n");
 
 					serialWriteChar(StringToSend);
-					//printf(" %d axe value: %d \r\n", myEvent.jaxis.axis, myEvent.jaxis.value);
+					printf(StringToSend);
+
 				}
 
-				if(myEvent.jaxis.axis == 4)
+				if(myEvent.jaxis.axis == 4
+						&& (myEvent.jaxis.value < -10000 || myEvent.jaxis.value > 10000 )
+						&& (myEvent.jaxis.value != 32768))
 				{
 					char StringToSend[14] = "4";
 
-					int jAxisValue = myEvent.jaxis.value;
+					strcat(StringToSend, "=");
+
+					int pval=0;
+					if(myEvent.jaxis.value < 0)
+					{
+						pval = myEvent.jaxis.value *(-1);
+					}
+					else
+					{
+						pval = myEvent.jaxis.value*(-1);
+					}
+
+					int jAxisValue = pval;
+
 					char jaxisValString[12]; //use 12 bit for a 32bits int
 					sprintf(jaxisValString, "%d", jAxisValue);
 
@@ -116,7 +161,8 @@ void getEVENT()
 					strcat(StringToSend, "\n");
 
 					serialWriteChar(StringToSend);
-					//printf(" %d axe value: %d \r\n", myEvent.jaxis.axis, myEvent.jaxis.value);
+
+					printf(StringToSend);
 				}
 
 			break;
